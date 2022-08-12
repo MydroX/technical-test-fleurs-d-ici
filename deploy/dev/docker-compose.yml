@@ -17,6 +17,8 @@ services:
       - 5432:5432
 
   fleursdici-pgadmin:
+    logging: 
+      driver: none
     env_file:
       - ../.env.local.db
     ports:
