@@ -44,6 +44,7 @@ func InitDB() {
 	}
 
 	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Logging{})
 
 	Conn = db
 }
