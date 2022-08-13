@@ -23,9 +23,14 @@ func Register(request models.RegisterBodyRequest) *error.Error {
 	var user models.User
 	if err := postgres.Conn.Where("username = ?", request.Username).First(&user).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			err := postgres.Conn.Create(&models.User{
+			hashedPassword, err := password.HashPassword(request.Password)
+			if err != nil {
+				return error.NewInternal("user register", fmt.Sprintf("error hashing password: %v", err))
+			}
+
+			err = postgres.Conn.Create(&models.User{
 				Username: request.Username,
-				Password: request.Password,
+				Password: hashedPassword,
 			}).Error
 
 			if err != nil {
