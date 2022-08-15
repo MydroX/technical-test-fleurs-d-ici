@@ -6,7 +6,9 @@ services:
       context: ../
       dockerfile: deploy/prod/Dockerfile
     env_file:
-      - .env
+      - ../.env
+    ports:
+      - 3000:3000
     
   fleursdici-postgres:
     env_file:

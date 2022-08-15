@@ -9,6 +9,8 @@ services:
       - ../.:/go/src/github.com/MydroX/fleursdici
     networks: 
       - fleursdici
+    depends_on:
+      - fleursdici-postgres
 
   fleursdici-postgres:
     image: postgres:14.5-alpine3.16
@@ -25,6 +27,8 @@ services:
        - pgadmin:/var/lib/pgadmin
     networks:
       - fleursdici
+    depends_on:
+      - fleursdici-postgres
 
 volumes:
   postgres:
