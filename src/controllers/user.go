@@ -62,7 +62,7 @@ func Login(request models.LoginBodyRequest) (*string, *error.Error) {
 }
 
 func Register(request models.RegisterBodyRequest) *error.Error {
-	if request.Username == "" || request.Password == "" {
+	if request.Username == "" || request.Password == "" || request.PasswordConfirmation == "" {
 		return error.New(http.StatusBadRequest, "username and passwords are required")
 	}
 
