@@ -18,6 +18,6 @@ func main() {
 
 	r := router.New()
 
-	log.Println(fmt.Sprintf("Server is starting on port %v", os.Getenv("PORT")))
+	log.Println(fmt.Sprintf("Server is starting on port : %v", os.Getenv("PORT")))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", os.Getenv("PORT")), r))
 }
